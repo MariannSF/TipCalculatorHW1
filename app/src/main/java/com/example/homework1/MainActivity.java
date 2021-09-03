@@ -32,6 +32,10 @@ final String TAG = "demo";
     TextView textViewTotalDisplay;
     TextView textViewPerson;
     double tipP;
+    double total;
+    double person;
+    double tipTotal;
+    double tip;
     /*
     To do:
     - When user modifies input update calculations
@@ -57,6 +61,10 @@ final String TAG = "demo";
         editTextTotalBill.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                tip = total*.1;
+                tipTotal = total+tip;
+                person = tipTotal/1;
+                calculateAndDisplay();
 
             }
 
@@ -65,12 +73,7 @@ final String TAG = "demo";
                 double total = Double.parseDouble(String.valueOf(editTextTotalBill.getText()));
 
                 double tip = (total/100)*10;
-                double tipTotal = total+tip;
-
-                Log.d(TAG, editTextTotalBill.getText().toString());
-                textViewTipDisplay.setText(String.valueOf(tip));
-                textViewTotalDisplay.setText(String.valueOf(tipTotal));
-                textViewPerson.setText(String.valueOf(tipTotal));
+                calculateAndDisplay();
             }
 
             @Override
@@ -84,17 +87,8 @@ final String TAG = "demo";
 
             @Override
             public void onClick(View view) {
-                double total = Double.parseDouble(String.valueOf(editTextTotalBill.getText()));
                 tipP = 0.1;
-
-                double tip = total*tipP;
-                double tipTotal = total+tip;
-
-                Log.d(TAG, editTextTotalBill.getText().toString());
-                textViewTipDisplay.setText(String.valueOf(tip));
-                textViewTotalDisplay.setText(String.valueOf(tipTotal));
-                textViewPerson.setText(String.valueOf(tipTotal));
-
+                calculateAndDisplay();
 
             }
         });
@@ -102,18 +96,8 @@ final String TAG = "demo";
 
             @Override
             public void onClick(View view) {
-                double total = Double.parseDouble(String.valueOf(editTextTotalBill.getText()));
                 tipP = 0.15;
-                double tip = total*tipP;
-                double tipTotal = total+tip;
-
-                Log.d(TAG, editTextTotalBill.getText().toString());
-                textViewTipDisplay.setText(String.valueOf(tip));
-                textViewTotalDisplay.setText(String.valueOf(tipTotal));
-                textViewPerson.setText(String.valueOf(tipTotal));
-
-
-
+                calculateAndDisplay();
 
             }
         });
@@ -121,17 +105,8 @@ final String TAG = "demo";
 
             @Override
             public void onClick(View view) {
-                double total = Double.parseDouble(String.valueOf(editTextTotalBill.getText()));
                 tipP = 0.18;
-                double tip = total*tipP;
-                double tipTotal = total+tip;
-
-                Log.d(TAG, editTextTotalBill.getText().toString());
-                textViewTipDisplay.setText(String.valueOf(tip));
-                textViewTotalDisplay.setText(String.valueOf(tipTotal));
-                textViewPerson.setText(String.valueOf(tipTotal));
-
-
+                calculateAndDisplay();
 
             }
         });
@@ -140,28 +115,13 @@ final String TAG = "demo";
             @Override
             public void onClick(View view) {
 
-                /*double total = Double.parseDouble(String.valueOf(editTextTotalBill.getText()));
-
-                double tip = (total/100)*40;
-                double tipTotal = total+tip;
-                textViewTipDisplay.setText(String.valueOf(tipTotal));
-                textViewTotalDisplay.setText(String.valueOf(tipTotal));
-                textViewPerson.setText(String.valueOf(tipTotal));
-                textViewSBpercentD.setText(String.valueOf(40));
-*/
                 seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                         textViewSBpercentD.setText(String.valueOf(i));
-                        double total = Double.parseDouble(String.valueOf(editTextTotalBill.getText()));
-                        //tipP = (i/100);
-                        double tip = (total/100)*i;
-                        //double tip = total*tipP;
-                        double tipTotal = total+tip;
-                        textViewTipDisplay.setText(String.valueOf(tip));
-                        textViewTotalDisplay.setText(String.valueOf(tipTotal));
-                        textViewPerson.setText(String.valueOf(tipTotal));
-
+                        tipP = (Double.parseDouble(String.valueOf(i))/100);
+                        Log.d(TAG, String.valueOf(i));
+                        calculateAndDisplay();
 
                     }
 
@@ -182,39 +142,44 @@ final String TAG = "demo";
         findViewById(R.id.radioButtonSplit1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              double total = Double.parseDouble(textViewTotalDisplay.getText().toString());
-              double person= total/1;
 
-              textViewPerson.setText(String.valueOf(person));
+              person= tipTotal/1;
                 calculateAndDisplay();
+                Log.d(TAG, "split is "+ person);
+
+
 
             }
         });
         findViewById(R.id.radioButtonSplit2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                double total = Double.parseDouble(textViewTotalDisplay.getText().toString());
-                double person= total/2;
-                textViewPerson.setText(String.valueOf(person));
+
+                person= tipTotal/2;
+                calculateAndDisplay();
+                Log.d(TAG, "split is "+ person);
+
 
             }
         });
         findViewById(R.id.radioButtonSplit3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                double total = Double.parseDouble(textViewTotalDisplay.getText().toString());
-                double person= total/3;
-                textViewPerson.setText(String.valueOf(person));
+
+                person= tipTotal/3;
+                calculateAndDisplay();
+                Log.d(TAG, "split is "+ person);
+
 
             }
         });
         findViewById(R.id.radioButtonSplit4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                double total = Double.parseDouble(textViewTotalDisplay.getText().toString());
-                double person= total/4;
-                textViewPerson.setText(String.valueOf(person));
 
+                person= tipTotal/4;
+                Log.d(TAG, "split is "+ person);
+                calculateAndDisplay();
             }
         });
 
@@ -223,14 +188,29 @@ final String TAG = "demo";
     }
     public void calculateAndDisplay(){
         //get the bill
-        Log.d(TAG, "Input is "+editTextTotalBill.getText().toString());
-        Log.d(TAG, "Tip is "+textViewTipDisplay.getText().toString());
-        Log.d(TAG, "Total is "+textViewTotalDisplay.getText().toString());
-        Log.d(TAG, "Per Person "+textViewPerson.getText().toString());
-        //get the tip
-        //calculate the tip
-        //calculate the total
-        //calculate split amount
+
+        try {
+            total = Double.parseDouble(editTextTotalBill.getText().toString());
+            Log.d(TAG, "from Calcualte "+total);
+            tip = total*tipP;
+            tipTotal = total+tip;
+
+            Log.d(TAG, "Input is "+editTextTotalBill.getText().toString());
+            Log.d(TAG, "Tip is "+textViewTipDisplay.getText().toString());
+            Log.d(TAG, "Total is "+textViewTotalDisplay.getText().toString());
+            Log.d(TAG, "Per Person "+textViewPerson.getText().toString());
+
+            textViewTipDisplay.setText("$"+String.valueOf(tip));
+            textViewTotalDisplay.setText("$"+String.valueOf(tipTotal));
+            //textViewPerson.setText("$"+String.valueOf(tipTotal));
+            textViewPerson.setText("$"+String.valueOf(person));
+            //get the tip
+            //calculate the tip
+            //calculate the total
+            //calculate split amount
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
     }
 }
 
