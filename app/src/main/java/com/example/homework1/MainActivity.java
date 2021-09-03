@@ -26,6 +26,12 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 final String TAG = "demo";
     EditText editTextTotalBill;
+    /*
+    To do:
+    - When user modifies input update calculations
+    - Activate Clear button
+    - if total bill is empty then tip and total/person should be set to $0.0
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
