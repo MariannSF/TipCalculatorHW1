@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Tip Calculator</string>
+    <string name="BillTotal">Bill Total:</string>
+    <string name="EnterBillTotal">Enter Bill Total: </string>
+    <string name="TipPercent">Tip %:</string>
+    <string name="RadioButtonTen">10%</string>
+    <string name="RadioButtonFifteen">15%</string>
+    <string name="RadioButtonEighteen">18%</string>
+    <string name="RadioButtonCustom">Custom</string>
+    <string name="EnterBillTotalHint">Enter Bill Total</string>
+    <string name="TextViewCustom">Custom:</string>
+    <string name="TextVewSeekBarSet">40%</string>
+    <string name="TextVewTip">Tip:</string>
+    <string name="TextVewTipDisplay">$0.0</string>
+    <string name="TextVewTotal">Total:</string>
+    <string name="TextVewTotalDisplay">$0.0</string>
+    <string name="TextVewSplit">"Split By: "</string>
+    <string name="RadioButtonSplit1">One</string>
+    <string name="RadioButtonSplit2">Two</string>
+    <string name="RadioButtonSplit3">Three</string>
+    <string name="RadioButtonSplit4">Four</string>
+    <string name="TextVewTotalPerPerson">Total/Person:</string>
+    <string name="TextVewTotalPerPersonDisplay">$0.0</string>
+    <string name="ButtonClear">Clear</string>
+
+</resources>

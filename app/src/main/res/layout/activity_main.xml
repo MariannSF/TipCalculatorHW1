@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textViewBillTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/BillTotal"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTipPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/TipPercent"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/textViewBillTotal"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimalTotalBill" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:baselineAligned="false"
+        android:checkedButton="@id/radioButton10"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewTipPercent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimalTotalBill">
+
+        <RadioButton
+            android:id="@+id/radioButton10"
+            android:layout_width="79dp"
+            android:layout_height="wrap_content"
+            android:text="@string/RadioButtonTen" />
+
+        <RadioButton
+            android:id="@+id/radioButton15"
+            android:layout_width="79dp"
+            android:layout_height="wrap_content"
+            android:text="@string/RadioButtonFifteen" />
+
+        <RadioButton
+            android:id="@+id/radioButton18"
+            android:layout_width="79dp"
+            android:layout_height="wrap_content"
+            android:text="@string/RadioButtonEighteen" />
+
+        <RadioButton
+            android:id="@+id/radioButtonCustom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/RadioButtonCustom" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textViewCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/TextViewCustom"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/textViewTipPercent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:max="50"
+        android:progress="40"
+        app:layout_constraintEnd_toStartOf="@+id/textViewPercentDisplay"
+        app:layout_constraintStart_toEndOf="@+id/textViewCustom"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+    <TextView
+        android:id="@+id/textViewPercentDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/TextVewSeekBarSet"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/radioGroup2"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+    <TextView
+        android:id="@+id/textViewTip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/TextVewTip"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/textViewCustom"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCustom" />
+
+    <TextView
+        android:id="@+id/textViewTipDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/TextVewTipDisplay"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/textViewTip"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCustom" />
+
+    <TextView
+        android:id="@+id/textViewTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/TextVewTotal"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/textViewTip"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTip" />
+
+    <TextView
+        android:id="@+id/textViewTotalDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/TextVewTotalDisplay"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/textViewTotal"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTipDisplay" />
+
+    <TextView
+        android:id="@+id/textViewSplit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/TextVewSplit"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/textViewTotal"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotal" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:checkedButton="@id/radioButtonSplit1"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewSplit"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalDisplay">
+
+        <RadioButton
+            android:id="@+id/radioButtonSplit1"
+            android:layout_width="79dp"
+            android:layout_height="wrap_content"
+            android:text="@string/RadioButtonSplit1" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSplit2"
+            android:layout_width="79dp"
+            android:layout_height="wrap_content"
+            android:text="@string/RadioButtonSplit2" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSplit3"
+            android:layout_width="79dp"
+            android:layout_height="wrap_content"
+            android:text="@string/RadioButtonSplit3" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSplit4"
+            android:layout_width="79dp"
+            android:layout_height="wrap_content"
+            android:text="@string/RadioButtonSplit4" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textViewTotalPerson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/TextVewTotalPerPerson"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/textViewSplit"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup3" />
+
+    <TextView
+        android:id="@+id/textViewTotalPersonDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/TextVewTotalPerPersonDisplay"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/textViewTotalPerson"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup3" />
+
+    <Button
+        android:id="@+id/buttonClear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="@string/ButtonClear"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalPerson" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimalTotalBill"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/EnterBillTotalHint"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewBillTotal"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
