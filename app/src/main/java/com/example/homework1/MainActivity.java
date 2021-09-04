@@ -1,7 +1,9 @@
 /*
 Homework1
 MainActivity.java
-Mariann Szabo-Freund
+Mariann Szabo-Freund,
+Bhaskararayuni Sai Datta
+
 
 Group 7
 9/1/2021
