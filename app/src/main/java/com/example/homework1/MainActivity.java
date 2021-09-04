@@ -95,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.activity_main);
+            }
+        });
     }
 
         public void calculateAndDisplay(){
@@ -121,9 +127,9 @@ public class MainActivity extends AppCompatActivity {
                 totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
 
 
-                tipValue.setText("$"+tipAmnt);
-                totalValue.setText("$"+(totalPerson));
-                perPerson.setText("$"+totalPerson);
+                tipValue.setText("$"+String.format("%.2f",tipAmnt));
+                totalValue.setText("$"+String.format("%.2f",totalPerson));
+                perPerson.setText("$"+String.format("%.2f",(totalPerson)));
 
 
             }else if(i == R.id.radioButton15){
@@ -132,9 +138,9 @@ public class MainActivity extends AppCompatActivity {
                 totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
 
 
-                tipValue.setText("$"+(tipAmnt));
-                totalValue.setText("$"+(totalPerson));
-                perPerson.setText("$"+totalPerson);
+                tipValue.setText("$"+String.format("%.2f",tipAmnt));
+                totalValue.setText("$"+String.format("%.2f",totalPerson));
+                perPerson.setText("$"+String.format("%.2f",(totalPerson)));
 
 
 
@@ -144,9 +150,9 @@ public class MainActivity extends AppCompatActivity {
                 totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
 
 
-                tipValue.setText("$"+(tipAmnt));
-                totalValue.setText("$"+(totalPerson));
-                perPerson.setText("$"+totalPerson);
+                tipValue.setText("$"+String.format("%.2f",tipAmnt));
+                totalValue.setText("$"+String.format("%.2f",totalPerson));
+                perPerson.setText("$"+String.format("%.2f",(totalPerson)));
 
 
 
@@ -162,10 +168,9 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
 
 
-                        tipValue.setText("$"+(tipAmnt));
-                        totalValue.setText("$"+(totalPerson));
-                        perPerson.setText("$"+totalPerson);
-
+                        tipValue.setText("$"+String.format("%.2f",tipAmnt));
+                        totalValue.setText("$"+String.format("%.2f",totalPerson));
+                        perPerson.setText("$"+String.format("%.2f",(totalPerson)));
 
 
 
@@ -190,12 +195,12 @@ public class MainActivity extends AppCompatActivity {
 
             if(y == R.id.radioButtonSplit1){
 
-                perPerson.setText("$"+totalPerson);
+                perPerson.setText("$"+String.format("%.2f",totalPerson));
 
             }else if (y == R.id.radioButtonSplit2){
 
                 double splitV = totalPerson/2;
-                perPerson.setText("$"+splitV);
+                perPerson.setText("$"+String.format("%.2f",splitV));
 
                 Log.d(TAG, totalValue.getText().toString());
 
@@ -204,16 +209,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, totalValue.getText().toString());
                 double split = totalPerson;
                 double splitV = split/3;
-                perPerson.setText("$"+splitV);
-
+                perPerson.setText("$"+String.format("%.2f",splitV));
 
 
             }else if (y == R.id.radioButtonSplit4){
                 Log.d(TAG, totalValue.getText().toString());
                 double split = totalPerson;
                 double splitV = split/4;
-                perPerson.setText("$"+splitV);
-
+                perPerson.setText("$"+String.format("%.2f",splitV));
 
 
             }
