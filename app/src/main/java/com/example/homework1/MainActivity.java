@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         percentGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                seekBar.setProgress(40);
 
                 calculateAndDisplay();
             }
