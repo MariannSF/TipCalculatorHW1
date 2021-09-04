@@ -15,6 +15,7 @@ package com.example.homework1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     double totalPerson;
     double tipD;
     double billTip;
+    int i;
+    int y;
 
 
 
@@ -100,8 +103,24 @@ public class MainActivity extends AppCompatActivity {
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.activity_main);
-            }
+                billTotal.setText("");
+                tipValue.setText("0.00");
+                totalValue.setText("0.00");
+                perPerson.setText("0.00");
+                seekBarProgress.setText("40");
+                seekBar.setProgress(40);
+                percentGroup.check(R.id.radioButton10);
+                splitByGroup.check(R.id.radioButtonSplit1);
+                calculateAndDisplay();
+
+
+               /* public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                    seekBarProgress.setText(String.valueOf(i));*/
+
+
+
+
+                }
         });
     }
 
@@ -121,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 billAmnt = Double.parseDouble(billTotalString);
             }
 
-            int i = percentGroup.getCheckedRadioButtonId();
+            i = percentGroup.getCheckedRadioButtonId();
 
             if(i == R.id.radioButton10){
                 tipD = 0.1;
@@ -192,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-            int y = splitByGroup.getCheckedRadioButtonId();
+            y = splitByGroup.getCheckedRadioButtonId();
 
 
             if(y == R.id.radioButtonSplit1){
