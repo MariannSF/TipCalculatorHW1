@@ -53,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
     double splitV;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,16 +67,18 @@ public class MainActivity extends AppCompatActivity {
         seekBar = findViewById(R.id.seekBar);
         splitByGroup = findViewById(R.id.radioGroup3);
         clearButton = findViewById(R.id.buttonClear);
-
+        //setting up listener on percent radio Group
         percentGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                //if radio group is checked then resetting the seekBar to initial state
                 seekBar.setProgress(40);
-
+                //Calling methods
                 calculateAndDisplay();
                 updateSplit();
             }
         });
+        //seting up listener on splitBy radio group
         splitByGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 updateSplit();
             }
         });
-
+        //setting up listener to the Bill Total field if user changes input
         billTotal.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        // Listener on clear Button  and resetting values to initial state
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,155 +120,127 @@ public class MainActivity extends AppCompatActivity {
                 calculateAndDisplay();
                 updateSplit();
 
-
-               /* public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                    seekBarProgress.setText(String.valueOf(i));*/
-
-
-
-
-                }
+            }
         });
     }
+    //method calculate and display calculates the percentage amount and
+    //perPerson amounts accordingly
+    public void calculateAndDisplay(){
 
-        public void calculateAndDisplay(){
+        billTotalString = billTotal.getText().toString();
 
+        billTip = 0;
+        if( billTotalString.equals("")){
+            billAmnt=0;
+        }else {
+            billAmnt = Double.parseDouble(billTotalString);
+        }
 
-            billTotalString = billTotal.getText().toString();
-
-
-
-
-
-            billTip = 0;
-            if( billTotalString.equals("")){
-                billAmnt=0;
-            }else {
-                billAmnt = Double.parseDouble(billTotalString);
-            }
-
-            i = percentGroup.getCheckedRadioButtonId();
-
-            if(i == R.id.radioButton10){
-                tipD = 0.1;
-                tipAmnt = billAmnt * tipD;
-                totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
-
-
-                tipValue.setText("$"+String.format("%.2f",tipAmnt));
-                totalValue.setText("$"+String.format("%.2f",totalPerson));
-                updateSplit();
-                //perPerson.setText("$"+String.format("%.2f",(totalPerson)));
+        i = percentGroup.getCheckedRadioButtonId();
+        //Checking which radio button is pushed and calculating amounts accordingly
+        if(i == R.id.radioButton10){
+            tipD = 0.1;
+            tipAmnt = billAmnt * tipD;
+            totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
+            //setting tip and total Textviews and calling the method updateSplit
+            tipValue.setText("$"+String.format("%.2f",tipAmnt));
+            totalValue.setText("$"+String.format("%.2f",totalPerson));
+            updateSplit();
 
 
-            }else if(i == R.id.radioButton15){
-                tipD = 0.15;
-                tipAmnt = billAmnt * tipD;
-                totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
+        }else if(i == R.id.radioButton15){
+            tipD = 0.15;
+            tipAmnt = billAmnt * tipD;
+            totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
+
+            tipValue.setText("$"+String.format("%.2f",tipAmnt));
+            totalValue.setText("$"+String.format("%.2f",totalPerson));
+            updateSplit();
 
 
-                tipValue.setText("$"+String.format("%.2f",tipAmnt));
-                totalValue.setText("$"+String.format("%.2f",totalPerson));
-                updateSplit();
-                //perPerson.setText("$"+String.format("%.2f",(totalPerson)));
+        }else if(i == R.id.radioButton18){
+            tipD = 0.18;
+            tipAmnt = billAmnt * tipD;
+            totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
 
+            tipValue.setText("$"+String.format("%.2f",tipAmnt));
+            totalValue.setText("$"+String.format("%.2f",totalPerson));
+            updateSplit();
 
+        }else if(i == R.id.radioButtonCustom){
+            //setting up a seekBar listener when the Custom percentage radio Button is selected
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                    //setting the seekBar TextVew to the seekBar progress
+                    seekBarProgress.setText(String.valueOf(i));
+                    //Since it is an inner class we need to reference the outer class to have a
+                    // ccess to variables
+                    MainActivity.this.tipD = (Double.parseDouble(String.valueOf(i)))/100;
+                    Log.d(TAG, String.valueOf(i));
+                    MainActivity.this.tipAmnt = billAmnt * tipD;
+                    MainActivity.this.totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
+                    Log.d(TAG, String.valueOf(splitV));
 
-            }else if(i == R.id.radioButton18){
-                tipD = 0.18;
-                tipAmnt = billAmnt * tipD;
-                totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
+                    tipValue.setText("$"+String.format("%.2f",tipAmnt));
+                    totalValue.setText("$"+String.format("%.2f",totalPerson));
+                    updateSplit();
 
+                }
 
-                tipValue.setText("$"+String.format("%.2f",tipAmnt));
-                totalValue.setText("$"+String.format("%.2f",totalPerson));
-                updateSplit();
-                //perPerson.setText("$"+String.format("%.2f",(totalPerson)));
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
 
+                }
 
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
 
-            }else if(i == R.id.radioButtonCustom){
-
-                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
-
-                        seekBarProgress.setText(String.valueOf(i));
-
-                        MainActivity.this.tipD = (Double.parseDouble(String.valueOf(i)))/100;
-                        Log.d(TAG, String.valueOf(i));
-                        MainActivity.this.tipAmnt = billAmnt * tipD;
-                        MainActivity.this.totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
-                        //MainActivity.this.y = splitByGroup.getCheckedRadioButtonId();
-                        Log.d(TAG, String.valueOf(splitV));
-
-
-
-                        tipValue.setText("$"+String.format("%.2f",tipAmnt));
-                        totalValue.setText("$"+String.format("%.2f",totalPerson));
-                        //perPerson.setText("$"+String.format("%.2f",(totalPerson)));
-                        updateSplit();
-
-                        //perPerson.setText("$"+String.format("%.2f",(totalPerson)));
-
-
-
-
-
-                    }
-
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-
-                    }
-
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-
-                    }
-                });
-
-            }
-
-
-
+                }
+            });
 
         }
-        public void updateSplit(){
-            y = splitByGroup.getCheckedRadioButtonId();
 
 
-            if(y == R.id.radioButtonSplit1){
-                splitV = totalPerson/1;
-
-                perPerson.setText("$"+String.format("%.2f",splitV));
-
-            }else if (y == R.id.radioButtonSplit2){
-
-                splitV = totalPerson/2;
-                perPerson.setText("$"+String.format("%.2f",splitV));
-
-                Log.d(TAG, totalValue.getText().toString());
 
 
-            }else if (y == R.id.radioButtonSplit3){
-                Log.d(TAG, totalValue.getText().toString());
-                double split = totalPerson;
-                splitV = split/3;
-                perPerson.setText("$"+String.format("%.2f",splitV));
-
-
-            }else if (y == R.id.radioButtonSplit4){
-                Log.d(TAG, totalValue.getText().toString());
-                double split = totalPerson;
-                splitV = split/4;
-                perPerson.setText("$"+String.format("%.2f",splitV));
-
-
-            }
-
-
-        }
     }
+    //Creating updateSplit method so based on the selected radioButton it will calculate and update
+    // the perPerson amount
+    public void updateSplit(){
+        y = splitByGroup.getCheckedRadioButtonId();
+
+
+        if(y == R.id.radioButtonSplit1){
+            splitV = totalPerson/1;
+
+            perPerson.setText("$"+String.format("%.2f",splitV));
+
+        }else if (y == R.id.radioButtonSplit2){
+
+            splitV = totalPerson/2;
+            perPerson.setText("$"+String.format("%.2f",splitV));
+
+            Log.d(TAG, totalValue.getText().toString());
+
+
+        }else if (y == R.id.radioButtonSplit3){
+            Log.d(TAG, totalValue.getText().toString());
+            double split = totalPerson;
+            splitV = split/3;
+            perPerson.setText("$"+String.format("%.2f",splitV));
+
+
+        }else if (y == R.id.radioButtonSplit4){
+            Log.d(TAG, totalValue.getText().toString());
+            double split = totalPerson;
+            splitV = split/4;
+            perPerson.setText("$"+String.format("%.2f",splitV));
+
+
+        }
+
+
+    }
+}
 
