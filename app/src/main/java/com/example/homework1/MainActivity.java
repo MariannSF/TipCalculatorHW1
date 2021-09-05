@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     double billTip;
     int i;
     int y;
+    double splitV;
 
 
 
@@ -183,16 +184,23 @@ public class MainActivity extends AppCompatActivity {
                 seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+
                         seekBarProgress.setText(String.valueOf(i));
 
                         MainActivity.this.tipD = (Double.parseDouble(String.valueOf(i)))/100;
+                        Log.d(TAG, String.valueOf(i));
                         MainActivity.this.tipAmnt = billAmnt * tipD;
                         MainActivity.this.totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
+                        //MainActivity.this.y = splitByGroup.getCheckedRadioButtonId();
+                        Log.d(TAG, String.valueOf(splitV));
+
 
 
                         tipValue.setText("$"+String.format("%.2f",tipAmnt));
                         totalValue.setText("$"+String.format("%.2f",totalPerson));
                         perPerson.setText("$"+String.format("%.2f",(totalPerson)));
+
 
 
 
@@ -216,12 +224,13 @@ public class MainActivity extends AppCompatActivity {
 
 
             if(y == R.id.radioButtonSplit1){
+                splitV = totalPerson/1;
 
-                perPerson.setText("$"+String.format("%.2f",totalPerson));
+                perPerson.setText("$"+String.format("%.2f",splitV));
 
             }else if (y == R.id.radioButtonSplit2){
 
-                double splitV = totalPerson/2;
+                splitV = totalPerson/2;
                 perPerson.setText("$"+String.format("%.2f",splitV));
 
                 Log.d(TAG, totalValue.getText().toString());
@@ -230,14 +239,14 @@ public class MainActivity extends AppCompatActivity {
             }else if (y == R.id.radioButtonSplit3){
                 Log.d(TAG, totalValue.getText().toString());
                 double split = totalPerson;
-                double splitV = split/3;
+                splitV = split/3;
                 perPerson.setText("$"+String.format("%.2f",splitV));
 
 
             }else if (y == R.id.radioButtonSplit4){
                 Log.d(TAG, totalValue.getText().toString());
                 double split = totalPerson;
-                double splitV = split/4;
+                splitV = split/4;
                 perPerson.setText("$"+String.format("%.2f",splitV));
 
 
