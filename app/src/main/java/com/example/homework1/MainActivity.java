@@ -5,7 +5,7 @@ Mariann Szabo-Freund,
 Bhaskararayuni Sai Datta
 
 
-Group 7
+Group 07
 9/1/2021
 
  */
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
             seekBar.setProgress(40);
             percentGroup.check(R.id.radioButton10);
             splitByGroup.check(R.id.radioButtonSplit1);
-            Toast.makeText(MainActivity.this, "Missing Input", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, R.string.Toast_text, Toast.LENGTH_SHORT).show();
 
         }else {
             billAmnt = Double.parseDouble(billTotalString);
@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
         if(i == R.id.radioButton10){
             tipD = 0.1;
             tipAmnt = billAmnt * tipD;
+            seekBar.setProgress(40);
             totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
             //setting tip and total Textviews and calling the method updateSplit
             tipValue.setText("$"+String.format("%.2f",tipAmnt));
@@ -162,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
             tipD = 0.15;
             tipAmnt = billAmnt * tipD;
             totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
-
+            seekBar.setProgress(40);
             tipValue.setText("$"+String.format("%.2f",tipAmnt));
             totalValue.setText("$"+String.format("%.2f",totalPerson));
             updateSplit();
@@ -172,14 +173,29 @@ public class MainActivity extends AppCompatActivity {
             tipD = 0.18;
             tipAmnt = billAmnt * tipD;
             totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
-
+            seekBar.setProgress(40);
             tipValue.setText("$"+String.format("%.2f",tipAmnt));
             totalValue.setText("$"+String.format("%.2f",totalPerson));
             updateSplit();
 
         }else if(i == R.id.radioButtonCustom){
+            /*//If radioButton Custom is pressed
+            //the seekbars preset value is sent and updating the total and tip values accordingly
+            tipD = Double.parseDouble(String.valueOf(40))/100;
+            tipAmnt = billAmnt * tipD;
+            seekBarProgress.setText("40");
+            seekBar.setProgress(40);
+            totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
+            Log.d(TAG, "calculate "+tipAmnt);
+            Log.d(TAG, "bill: "+billAmnt);
+            Log.d(TAG, "tipD: "+tipD);
+            tipValue.setText("$"+String.format("%.2f",tipAmnt));
+            totalValue.setText("$"+String.format("%.2f",totalPerson));*/
+            //updateSplit();
             //setting up a seekBar listener when the Custom percentage radio Button is selected
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                     //setting the seekBar TextVew to the seekBar progress
@@ -189,7 +205,6 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.this.tipD = (Double.parseDouble(String.valueOf(i)))/100;
                     MainActivity.this.tipAmnt = billAmnt * tipD;
                     MainActivity.this.totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
-
                     tipValue.setText("$"+String.format("%.2f",tipAmnt));
                     totalValue.setText("$"+String.format("%.2f",totalPerson));
                     updateSplit();

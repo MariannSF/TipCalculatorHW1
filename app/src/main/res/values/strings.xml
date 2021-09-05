@@ -22,5 +22,6 @@
     <string name="TextVewTotalPerPerson">Total/Person:</string>
     <string name="TextVewTotalPerPersonDisplay">$0.0</string>
     <string name="ButtonClear">Clear</string>
+    <string name="Toast_text">Missing Input</string>
 
 </resources>
