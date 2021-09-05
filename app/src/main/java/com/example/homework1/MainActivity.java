@@ -131,10 +131,20 @@ public class MainActivity extends AppCompatActivity {
 
         billTip = 0;
         if( billTotalString.equals("")){
-            billAmnt=0;
+           billAmnt=0;
+            tipValue.setText("0.00");
+            totalValue.setText("0.00");
+            perPerson.setText("0.00");
+            seekBarProgress.setText("40");
+            seekBar.setProgress(40);
+            percentGroup.check(R.id.radioButton10);
+            splitByGroup.check(R.id.radioButtonSplit1);
+            Toast.makeText(MainActivity.this, "Missing Input", Toast.LENGTH_SHORT).show();
+
         }else {
             billAmnt = Double.parseDouble(billTotalString);
         }
+
 
         i = percentGroup.getCheckedRadioButtonId();
         //Checking which radio button is pushed and calculating amounts accordingly
@@ -177,10 +187,8 @@ public class MainActivity extends AppCompatActivity {
                     //Since it is an inner class we need to reference the outer class to have a
                     // ccess to variables
                     MainActivity.this.tipD = (Double.parseDouble(String.valueOf(i)))/100;
-                    Log.d(TAG, String.valueOf(i));
                     MainActivity.this.tipAmnt = billAmnt * tipD;
                     MainActivity.this.totalPerson = Double.parseDouble(String.valueOf(billAmnt+tipAmnt));
-                    Log.d(TAG, String.valueOf(splitV));
 
                     tipValue.setText("$"+String.format("%.2f",tipAmnt));
                     totalValue.setText("$"+String.format("%.2f",totalPerson));
@@ -213,7 +221,6 @@ public class MainActivity extends AppCompatActivity {
 
         if(y == R.id.radioButtonSplit1){
             splitV = totalPerson/1;
-
             perPerson.setText("$"+String.format("%.2f",splitV));
 
         }else if (y == R.id.radioButtonSplit2){
@@ -221,18 +228,13 @@ public class MainActivity extends AppCompatActivity {
             splitV = totalPerson/2;
             perPerson.setText("$"+String.format("%.2f",splitV));
 
-            Log.d(TAG, totalValue.getText().toString());
-
-
         }else if (y == R.id.radioButtonSplit3){
-            Log.d(TAG, totalValue.getText().toString());
             double split = totalPerson;
             splitV = split/3;
             perPerson.setText("$"+String.format("%.2f",splitV));
 
 
         }else if (y == R.id.radioButtonSplit4){
-            Log.d(TAG, totalValue.getText().toString());
             double split = totalPerson;
             splitV = split/4;
             perPerson.setText("$"+String.format("%.2f",splitV));
