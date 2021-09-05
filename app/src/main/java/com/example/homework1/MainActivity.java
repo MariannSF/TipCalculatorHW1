@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 seekBar.setProgress(40);
 
                 calculateAndDisplay();
+                updateSplit();
             }
         });
         splitByGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
 
                 calculateAndDisplay();
+                updateSplit();
             }
         });
 
@@ -95,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 calculateAndDisplay();
+                updateSplit();
             }
 
             @Override
@@ -114,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 percentGroup.check(R.id.radioButton10);
                 splitByGroup.check(R.id.radioButtonSplit1);
                 calculateAndDisplay();
+                updateSplit();
 
 
                /* public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -152,7 +156,8 @@ public class MainActivity extends AppCompatActivity {
 
                 tipValue.setText("$"+String.format("%.2f",tipAmnt));
                 totalValue.setText("$"+String.format("%.2f",totalPerson));
-                perPerson.setText("$"+String.format("%.2f",(totalPerson)));
+                updateSplit();
+                //perPerson.setText("$"+String.format("%.2f",(totalPerson)));
 
 
             }else if(i == R.id.radioButton15){
@@ -163,7 +168,8 @@ public class MainActivity extends AppCompatActivity {
 
                 tipValue.setText("$"+String.format("%.2f",tipAmnt));
                 totalValue.setText("$"+String.format("%.2f",totalPerson));
-                perPerson.setText("$"+String.format("%.2f",(totalPerson)));
+                updateSplit();
+                //perPerson.setText("$"+String.format("%.2f",(totalPerson)));
 
 
 
@@ -175,7 +181,8 @@ public class MainActivity extends AppCompatActivity {
 
                 tipValue.setText("$"+String.format("%.2f",tipAmnt));
                 totalValue.setText("$"+String.format("%.2f",totalPerson));
-                perPerson.setText("$"+String.format("%.2f",(totalPerson)));
+                updateSplit();
+                //perPerson.setText("$"+String.format("%.2f",(totalPerson)));
 
 
 
@@ -199,7 +206,10 @@ public class MainActivity extends AppCompatActivity {
 
                         tipValue.setText("$"+String.format("%.2f",tipAmnt));
                         totalValue.setText("$"+String.format("%.2f",totalPerson));
-                        perPerson.setText("$"+String.format("%.2f",(totalPerson)));
+                        //perPerson.setText("$"+String.format("%.2f",(totalPerson)));
+                        updateSplit();
+
+                        //perPerson.setText("$"+String.format("%.2f",(totalPerson)));
 
 
 
@@ -220,6 +230,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+
+
+
+        }
+        public void updateSplit(){
             y = splitByGroup.getCheckedRadioButtonId();
 
 
@@ -251,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
+
 
         }
     }
